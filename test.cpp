@@ -1,8 +1,10 @@
+#include "MyClass.h"
 #include <cassert>
-#include "funcA.h"
 
 int main() {
-    FuncA func;
-    assert(func.calculate(3) == expected_value); // Replace with expected output
+    MyClass obj;
+    double result = obj.FuncA();
+    // Basic test - we expect a non-zero result for default params
+    assert(result != 0.0);
     return 0;
 }

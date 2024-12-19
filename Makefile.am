@@ -2,7 +2,8 @@
 AUTOMAKE_OPTIONS = foreign
 bin_PROGRAMS = main
 main_SOURCES = main.cpp MyClass.cpp MyClass.h
-EXTRA_DIST = Makefile.am
 
-check_PROGRAMS = test
-test_funcA_SOURCES = test.cpp funcA.cpp
+check_PROGRAMS = test_funcA
+test_funcA_SOURCES = test.cpp MyClass.cpp MyClass.h
+
+TESTS = test_funcA
