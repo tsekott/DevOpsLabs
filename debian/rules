@@ -1,0 +1,4 @@
+# debian/rules
+#!/usr/bin/make -f
+%:
+    dh $@

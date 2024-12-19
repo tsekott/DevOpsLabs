@@ -3,9 +3,9 @@ name: C/C++ CI
 
 on:
   push:
-    branches: ["branchAutomake"]
+    branches: ["branchAutoPackage"]
   pull_request:
-    branches: ["branchAutomake"]
+    branches: ["branchAutoPackage"]
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++ make autoconf automake
+          sudo apt-get install -y g++ make autoconf automake devscripts debhelper
 
       - name: Generate build system
         run: |
@@ -29,8 +29,14 @@ jobs:
       - name: Create distribution
         run: make dist
         
-      - name: Upload tarball
+      - name: Build Debian package
+        run: |
+          tar xf cppproject-*.tar.gz
+          cd cppproject-*
+          debuild -us -uc
+        
+      - name: Upload Debian package
         uses: actions/upload-artifact@v4
         with:
-          name: cppproject-dist
-          path: cppproject-*.tar.gz
+          name: cppproject-deb
+          path: ../*.deb
