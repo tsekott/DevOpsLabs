@@ -1,13 +1,13 @@
 # debian/control
-Source: cppproject
+Source: funca-program
 Section: utils
 Priority: optional
 Maintainer: Your Name <your@email.com>
 Build-Depends: debhelper (>= 9), autotools-dev
 Standards-Version: 4.5.0
 
-Package: cppproject
+Package: funca-program
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Example C++ project
- A simple C++ project demonstrating autotools and debian packaging.
+Description: Example C++ program
+ A simple C++ program demonstrating function calculations.

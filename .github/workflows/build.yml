@@ -26,20 +26,14 @@ jobs:
       - name: Build program
         run: make
         
-      - name: Create distribution
-        run: make dist
-        
-      - name: Build Debian package
-        run: |
-          version=$(ls cppproject-*.tar.gz | sed 's/cppproject-\(.*\)\.tar\.gz/\1/')
-          tar xf cppproject-${version}.tar.gz
-          cd cppproject-${version}
-          debuild -us -uc
+      - name: Build Debian Package
+        run: dpkg-buildpackage -us -uc
 
-      - name: Upload artifacts
+      - name: Move Debian Package
+        run: mv ../funca-program_1.0-1_amd64.deb .
+
+      - name: Upload Debian Package
         uses: actions/upload-artifact@v4
         with:
-          name: packages
-          path: |
-            *.deb
-            *.tar.gz
+          name: funca-deb
+          path: funca-program_1.0-1_amd64.deb
