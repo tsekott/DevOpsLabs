@@ -1,19 +1,36 @@
+# .github/workflows/build.yml
 name: C/C++ CI
 
 on:
   push:
-    branches: ["branchMake"]
+    branches: ["branchAutomake"]
   pull_request:
-    branches: ["branchMake"]
+    branches: ["branchAutomake"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
+      
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y g++ make
-      - name: Build program
         run: |
-          make
+          sudo apt-get update
+          sudo apt-get install -y g++ make autoconf automake
+
+      - name: Generate build system
+        run: |
+          autoreconf --install
+          ./configure
+          
+      - name: Build program
+        run: make
+        
+      - name: Create distribution
+        run: make dist
+        
+      - name: Upload tarball
+        uses: actions/upload-artifact@v4
+        with:
+          name: cppproject-dist
+          path: cppproject-*.tar.gz
