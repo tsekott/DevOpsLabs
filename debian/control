@@ -1,12 +1,12 @@
 # debian/control
-Source: funca-program
+Source: cppproject
 Section: utils
 Priority: optional
-Maintainer: Your Name <your@email.com>
+Maintainer: Your Name <zekotmaryana2004@gmail.com>
 Build-Depends: debhelper (>= 9), autotools-dev
 Standards-Version: 4.5.0
 
-Package: funca-program
+Package: cppproject
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Example C++ program

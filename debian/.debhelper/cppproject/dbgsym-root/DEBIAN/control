@@ -1,0 +1,13 @@
+Package: cppproject-dbgsym
+Package-Type: ddeb
+Source: cppproject
+Version: 1.0-1
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Your Name <zekotmaryana2004@gmail.com>
+Installed-Size: 28
+Depends: cppproject (= 1.0-1)
+Section: debug
+Priority: optional
+Description: debug symbols for cppproject
+Build-Ids: 0085b862b87ea557632bfac738035373918a680e

@@ -1,0 +1,10 @@
+Package: cppproject
+Version: 1.0-1
+Architecture: amd64
+Maintainer: Your Name <zekotmaryana2004@gmail.com>
+Installed-Size: 23
+Depends: libc6 (>= 2.34), libstdc++6 (>= 4.4)
+Section: utils
+Priority: optional
+Description: Example C++ program
+ A simple C++ program demonstrating function calculations.
