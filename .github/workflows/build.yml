@@ -1,6 +1,4 @@
-# .github/workflows/build.yml
-name: C/C++ CI
-
+name: Docker Build CI
 on:
   push:
     branches: ["branchHTTPserver"]
@@ -16,7 +14,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++ make autoconf automake devscripts debhelper build-essential
+          sudo apt-get install -y g++ make autoconf automake
 
       - name: Generate build system
         run: |
@@ -28,3 +26,28 @@ jobs:
 
       - name: Run tests
         run: make check
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push AMD64
+        run: docker build --platform=linux/amd64 -t maryannna/httpserver:amd64 --push .
+
+      - name: Build and push ARM64
+        run: docker build --platform=linux/arm64 -t maryannna/httpserver:arm64 --push .
+
+      - name: Create and push manifest
+        run: |
+          docker manifest create maryannna/httpserver \
+            --amend maryannna/httpserver:amd64 \
+            --amend maryannna/httpserver:arm64
+          docker manifest push maryannna/httpserver
