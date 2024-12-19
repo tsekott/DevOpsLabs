@@ -4,7 +4,7 @@
 class MyClass {
 public:
     // FuncA calculates a trigonometric function
-    double FuncA();
+    double FuncA(int n);
 };
 
 #endif
