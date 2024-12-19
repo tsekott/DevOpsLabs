@@ -31,12 +31,15 @@ jobs:
         
       - name: Build Debian package
         run: |
-          tar xf cppproject-*.tar.gz
-          cd cppproject-*
+          version=$(ls cppproject-*.tar.gz | sed 's/cppproject-\(.*\)\.tar\.gz/\1/')
+          tar xf cppproject-${version}.tar.gz
+          cd cppproject-${version}
           debuild -us -uc
-        
-      - name: Upload Debian package
+
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: cppproject-deb
-          path: ../*.deb
+          name: packages
+          path: |
+            *.deb
+            *.tar.gz
