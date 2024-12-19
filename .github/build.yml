@@ -2,11 +2,9 @@ name: Build CI
 
 on:
   push:
-    branches:
-      - branchMake
+    branches: [ branchMake ]
   pull_request:
-    branches:
-      - branchMake
+    branches: [ branchMake ]
 
 jobs:
   build:
