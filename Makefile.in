@@ -103,7 +103,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_main_OBJECTS = main.$(OBJEXT) MyClass.$(OBJEXT)
+am_main_OBJECTS = main.$(OBJEXT) MyClass.$(OBJEXT) \
+	HTTP_Server.$(OBJEXT)
 main_OBJECTS = $(am_main_OBJECTS)
 main_LDADD = $(LDADD)
 am_test_funcA_OBJECTS = test.$(OBJEXT) MyClass.$(OBJEXT)
@@ -124,8 +125,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/MyClass.Po ./$(DEPDIR)/main.Po \
-	./$(DEPDIR)/test.Po
+am__depfiles_remade = ./$(DEPDIR)/HTTP_Server.Po \
+	./$(DEPDIR)/MyClass.Po ./$(DEPDIR)/main.Po ./$(DEPDIR)/test.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -497,7 +498,7 @@ top_srcdir = @top_srcdir@
 
 # Makefile.am
 AUTOMAKE_OPTIONS = foreign
-main_SOURCES = main.cpp MyClass.cpp MyClass.h
+main_SOURCES = main.cpp MyClass.cpp MyClass.h HTTP_Server.cpp HTTP_Server.h
 test_funcA_SOURCES = test.cpp MyClass.cpp MyClass.h
 all: all-am
 
@@ -596,6 +597,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HTTP_Server.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MyClass.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test.Po@am__quote@ # am--include-marker
@@ -1062,7 +1064,8 @@ clean-am: clean-binPROGRAMS clean-checkPROGRAMS clean-generic \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-		-rm -f ./$(DEPDIR)/MyClass.Po
+		-rm -f ./$(DEPDIR)/HTTP_Server.Po
+	-rm -f ./$(DEPDIR)/MyClass.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f ./$(DEPDIR)/test.Po
 	-rm -f Makefile
@@ -1112,7 +1115,8 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-		-rm -f ./$(DEPDIR)/MyClass.Po
+		-rm -f ./$(DEPDIR)/HTTP_Server.Po
+	-rm -f ./$(DEPDIR)/MyClass.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f ./$(DEPDIR)/test.Po
 	-rm -f Makefile
