@@ -1,9 +1,9 @@
 name: Docker Build CI
 on:
   push:
-    branches: ["branchHTTPservMulti"]
+    branches: ["branchHTTPserverMkr"]
   pull_request:
-    branches: ["branchHTTPservMulti"]
+    branches: ["branchHTTPserverMkr"]
 
 jobs:
   build:
